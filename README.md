@@ -4,6 +4,77 @@ This is a **full-stack Bookstore Application** built with **NestJS (TypeScript)*
 
 ---
 
+🚀 Assignment Overview
+I have developed a full-stack Bookstore Web Application that fulfills all core requirements outlined in the backend developer assignment. The project comprises a NestJS-based RESTful API and a clean HTML/CSS/JS-based frontend, providing a seamless user experience.
+
+This application allows users to authenticate, manage books, apply filters/search, and interact through a friendly web UI.
+
+## 📌 Core Functional Requirements – ✅ Completed
+
+### 1. ✅ User Authentication (JWT-Based)
+- **Signup**: Users can register using an email and password.
+- **Passwords** are securely hashed using `bcrypt`.
+- **Login**: Valid users receive a **JWT token** on login.
+- **Protected Routes**: All book management operations (create, update, delete) are secured via JWT.
+
+---
+
+### 2. ✅ Books API Endpoints
+
+| Method | Endpoint        | Description             |
+|--------|------------------|-------------------------|
+| POST   | /books           | Add a new book          |
+| GET    | /books           | Retrieve all books      |
+| GET    | /books/:id       | Get book details by ID  |
+| PATCH  | /books/:id       | Update a book by ID     |
+| DELETE | /books/:id       | Delete a book by ID     |
+
+> Fields include: `title`, `author`, `category`, `price`, `rating`, `publishedDate`
+
+---
+
+### 3. ✅ Filtering & Search
+- **Filter books by**:
+  - Author
+  - Category
+  - Rating
+- **Search** books by partial title match
+
+---
+
+### 4. ✅ Error Handling
+- Returns proper HTTP **status codes** for all invalid inputs
+- Clear and user-friendly **error messages** shown in the frontend UI
+
+---
+
+## 🎯 Bonus Features – ✅ Implemented
+
+- ✅ **Sorting**: Books can be sorted by price or rating
+- ✅ **Modular Architecture** using NestJS modules, services, and controllers
+- ✅ **Pagination Ready**: Models and APIs are structured to support pagination (extensible)
+- ✅ **Dockerized Setup**:
+  - Includes a working `Dockerfile` and `docker-compose.yml`
+
+---
+
+### ✅ Frontend UI
+
+- Static **HTML/CSS/JS frontend** (no React)
+
+#### Pages for:
+- 🔐 **Login**
+- 📝 **Signup**
+- 📚 **Book Management** (Create, Edit, Delete)
+- 🔍 **Search / Filter / Sort**
+
+#### User feedback for:
+- Form validation errors  
+- Invalid login or short password  
+- Unauthorized access  
+- Empty search results
+
+
 ## 🚀 Features
 
 ### ✅ Authentication
