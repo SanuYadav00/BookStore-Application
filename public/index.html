@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bookstore Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+</head>
+<body onload="checkAuth()" class="bg-gray-100 text-gray-800">
+  <script src="/js/auth.js"></script>
+
+  <!-- Navbar -->
+  <nav class="bg-blue-600 text-white px-4 py-3 flex justify-between items-center">
+    <h1 class="text-xl font-bold">📘 Bookstore App</h1>
+    <button onclick="logout()" class="bg-white text-blue-600 px-2 py-1 rounded hover:bg-gray-200">Logout</button>
+  </nav>
+
+  <!-- Home Content -->
+  <div class="container mx-auto px-4 py-10">
+    <h2 class="text-2xl font-semibold mb-6">Welcome! Choose an action:</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
+      <a href="/create.html" class="bg-green-500 text-white px-4 py-4 rounded hover:bg-green-600">➕ Add a Book</a>
+      <a href="/books.html" class="bg-blue-500 text-white px-4 py-4 rounded hover:bg-blue-600">📚 View All Books</a>
+      <a href="/search.html" class="bg-yellow-500 text-white px-4 py-4 rounded hover:bg-yellow-600">🔍 Search</a>
+      <a href="/filter.html" class="bg-purple-500 text-white px-4 py-4 rounded hover:bg-purple-600">🔎 Filter</a>
+      <a href="/sort.html" class="bg-pink-500 text-white px-4 py-4 rounded hover:bg-pink-600">📊 Sort</a>
+    </div>
+  </div>
+</body>
+</html>

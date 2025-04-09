@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Add Book</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <div class="container mx-auto px-4 py-6">
+    <h1 class="text-2xl font-bold mb-4">➕ Add New Book</h1>
+    <form id="addBookForm" class="bg-white p-6 rounded shadow-md w-full max-w-lg">
+      <input type="text" name="title" placeholder="Title" required class="w-full mb-3 px-3 py-2 border rounded" />
+      <input type="text" name="author" placeholder="Author" required class="w-full mb-3 px-3 py-2 border rounded" />
+      <input type="text" name="category" placeholder="Category" required class="w-full mb-3 px-3 py-2 border rounded" />
+      <input type="number" name="price" placeholder="Price" step="0.01" required class="w-full mb-3 px-3 py-2 border rounded" />
+      <input type="number" name="rating" placeholder="Rating (1-5)" min="1" max="5" required class="w-full mb-3 px-3 py-2 border rounded" />
+      <input type="date" name="publishedDate" required class="w-full mb-3 px-3 py-2 border rounded" />
+      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 w-full">Add Book</button>
+    </form>
+
+    <div class="mt-4">
+      <a href="/index.html" class="text-blue-600 hover:underline">← Back to Home</a>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('addBookForm');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const data = {};
+      formData.forEach((value, key) => data[key] = value);
+
+      const token = localStorage.getItem('token');
+      if (!token) {
+        alert('You must be logged in.');
+        window.location.href = '/login.html';
+        return;
+      }
+
+      const res = await fetch('/books', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(data)
+      });
+
+      if (res.ok) {
+        alert('Book added successfully!');
+        window.location.href = '/index.html';
+      } else {
+        const error = await res.json();
+        alert(`Error: ${error.message || 'Failed to add book'}`);
+      }
+    });
+  </script>
+  <script src="/js/auth.js"></script>
+</body>
+</html>

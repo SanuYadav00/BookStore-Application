@@ -1,0 +1,58 @@
+<!-- File: public/login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login - Bookstore</title>
+  <script src="/js/auth.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+</head>
+<body onload="checkIfLoggedIn()" class="bg-gray-100 flex items-center justify-center h-screen">
+  <div class="bg-white p-8 rounded shadow-md w-full max-w-sm">
+    <h2 class="text-2xl font-bold mb-4 text-center">Login to Bookstore</h2>
+
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="Email" required class="w-full mb-4 px-4 py-2 border rounded" />
+      <input type="password" id="password" placeholder="Password" required class="w-full mb-4 px-4 py-2 border rounded" />
+      
+      <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">Login</button>
+    </form>
+
+    <p id="error" class="text-red-500 text-center mt-4 hidden">Invalid email or password. Please try again.</p>
+
+    <p class="mt-4 text-center text-sm">Don't have an account? <a href="/signup.html" class="text-blue-500 hover:underline">Sign up</a></p>
+  </div>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    const errorMsg = document.getElementById('error');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = form.email.value;
+      const password = form.password.value;
+
+      try {
+        const res = await fetch('/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password }),
+        });
+
+        if (!res.ok) throw new Error('Invalid credentials');
+
+        const data = await res.json();
+        localStorage.setItem('token', data.access_token);
+        window.location.href = '/index.html';
+      } catch (err) {
+        errorMsg.classList.remove('hidden');
+      }
+    });
+
+    function checkIfLoggedIn() {
+      const token = localStorage.getItem('token');
+      if (token) window.location.href = '/index.html';
+    }
+  </script>
+</body>
+</html>
