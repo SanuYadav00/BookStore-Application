@@ -4,7 +4,7 @@ This is a **full-stack Bookstore Application** built with **NestJS (TypeScript)*
 
 ---
 
-🚀 Assignment Overview
+# 📚 Assignment Overview
 I have developed a full-stack Bookstore Web Application that fulfills all core requirements outlined in the backend developer assignment. The project comprises a NestJS-based RESTful API and a clean HTML/CSS/JS-based frontend, providing a seamless user experience.
 
 This application allows users to authenticate, manage books, apply filters/search, and interact through a friendly web UI.
